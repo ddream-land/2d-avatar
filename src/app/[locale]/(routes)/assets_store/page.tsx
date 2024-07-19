@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { NextIntlClientProvider, useMessages } from "next-intl";
+import AssetsStore from "@/components/assets_store/AssetsStore";
 
 interface Avatar2dProps {}
 
@@ -8,7 +9,7 @@ const Avatar2d: FC<Avatar2dProps> = ({}) => {
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <div className="w-20 h-screen bg-green-200">This is 2dAvatar</div>
+      <AssetsStore />
     </NextIntlClientProvider>
   );
 };

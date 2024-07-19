@@ -61,7 +61,7 @@ const Header: FC<HeaderProps> = ({}) => {
 
   return (
     <>
-      <nav className="sticky top-0 w-full h-[82px] px-6 bg-zinc-800 flex justify-between items-center ">
+      <nav className="sticky top-0 w-full h-[82px] px-6 bg-zinc-800 flex justify-between items-center z-[5]">
         <div className="w-60 flex justify-between items-center">
           <div className={`w-[320px] p-[5px] fixed top-0 left-0 bottom-0 pointer-events-none bg-transparent`}>
             <DDLSidebar

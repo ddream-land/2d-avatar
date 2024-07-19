@@ -18,6 +18,20 @@
     "myCollection": "我的收藏",
     "logout": "退出登录"
   },
+  "tags": {
+    "all": "全部",
+    "digitalLifeAssets": "数字生命资产",
+    "voiceAssets": "声音资产"
+  },
+  "assetsStore": {
+    "title": "数字资产商店",
+    "trending": "最热",
+    "latest": "最新",
+    "digitallife": "数字生命",
+    "moredigitallife": "更多数字生命资产",
+    "voiceassets": "声音资产",
+    "morevoiceassets": "更多声音资产"
+  },
   "Navigation": {
     "character": "数字生命",
     "communityediton": "社区版",

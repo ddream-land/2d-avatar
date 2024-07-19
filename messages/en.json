@@ -17,6 +17,20 @@
     "myCollection": "My Collection",
     "logout": "Log Out"
   },
+  "tags": {
+    "all": "All",
+    "digitalLifeAssets": "Digital Life Assets",
+    "voiceAssets": "Voice Assets"
+  },
+  "assetsStore": {
+    "title": "Assets Store",
+    "trending": "Trending",
+    "latest": "Latest",
+    "digitallife": "Digital Life",
+    "moredigitallife": "More Digital Life Assets",
+    "voiceassets": "Voice Assets",
+    "morevoiceassets": "More Voice Assets"
+  },
   "Navigation": {
     "voiceasset": "Voice Asset",
     "workstation": "Work Station",
