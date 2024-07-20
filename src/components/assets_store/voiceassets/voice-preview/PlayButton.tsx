@@ -5,41 +5,83 @@ import { PauseIcon } from "@heroicons/react/24/solid";
 import { usePlayBtnDispatch } from "./PlayButtonContextProvider";
 
 function PlayButton({
-	isPlay = false,
+  isPlay = false,
   onChange,
   voiceSrc,
   wavesurfer,
-  classNames= {
-    base: 'w-8 h-8',
-  }
+  classNames = {
+    base: "w-8 h-8",
+  },
 }: {
-	isPlay?: boolean,
-  onChange?: (isPlay: boolean) => void,
-  voiceSrc?: string,
-  wavesurfer?: any,
+  isPlay?: boolean;
+  onChange?: (isPlay: boolean) => void;
+  voiceSrc?: string;
+  wavesurfer?: any;
   classNames?: {
-    base?: string
-  }
+    base?: string;
+  };
 }) {
   const [playing, setPlaying] = useState(isPlay);
   const audioRef = useRef<HTMLAudioElement>();
 
   const playBtnDispatch = usePlayBtnDispatch();
 
+  // useEffect(() => {
+  //   if (!voiceSrc || voiceSrc === "") return;
+  //   if (playing) {
+  //     playBtnDispatch({
+  //       type: "pause",
+  //       payload: {
+  //         audio: audioRef.current,
+  //       },
+  //     });
+  //     audioRef.current?.play();
+  //   } else {
+  //     audioRef.current?.pause();
+  //   }
+  // }, [playing]);
+
+  // 优化play
   useEffect(() => {
-    if (!voiceSrc || voiceSrc === '') return;
-    if (playing) {
-      playBtnDispatch({
-        type: "pause",
-        payload: {
-          audio: audioRef.current
-        },
-      })
-      audioRef.current?.play();
-    } else {
-      audioRef.current?.pause();
-    }
-  }, [playing]);
+    if (!voiceSrc || voiceSrc === "") return;
+
+    const audioElement = audioRef.current;
+    if (!audioElement) return;
+
+    const handlePlayPause = async () => {
+      try {
+        if (playing) {
+          if (audioElement.paused || audioElement.ended) {
+            audioElement.currentTime = 0; // 重置到开始
+            playBtnDispatch({
+              type: "pause",
+              payload: {
+                audio: audioRef.current,
+              },
+            });
+            await audioElement.play();
+          }
+        } else {
+          audioElement.pause();
+        }
+      } catch (error) {
+        console.error("音频播放错误:", error);
+        setPlaying(false);
+      }
+    };
+
+    handlePlayPause();
+
+    // 添加结束事件监听器
+    const handleEnded = () => {
+      setPlaying(false);
+    };
+    audioElement.addEventListener("ended", handleEnded);
+
+    return () => {
+      audioElement.removeEventListener("ended", handleEnded);
+    };
+  }, [playing, voiceSrc]);
 
   return (
     <div>
@@ -49,7 +91,7 @@ function PlayButton({
           onClick={() => {
             onChange && onChange(false);
             setPlaying(false);
-          }} 
+          }}
         >
           <PauseIcon className="h-5 w-5 fill-black stroke-black stroke-1" />
         </div>

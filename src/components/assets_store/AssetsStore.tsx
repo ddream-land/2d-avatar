@@ -9,6 +9,7 @@ import DigitalLifeList from "./digital-life-assets/digital-life-list/DigitalLife
 import { TypeVoiceModel } from "@/lib/definitions.voice";
 import VoiceModelListNoScroll from "./VoiceModelListNoScroll";
 import DigitalLifeListNoScroll from "./DigitalLifeListNoScroll";
+import VoiceModelDetailDrawerModal from "./voiceassets/voice-model-detail/VoiceModelDetailDrawerModal";
 
 interface AssetsStoreProps {}
 
@@ -21,7 +22,6 @@ const AssetsStore: FC<AssetsStoreProps> = ({}) => {
   const [isDigitalMoreDispaly, setIsDigitalMoreDispaly] = useState(false);
   const t = useTranslations();
 
-  // 选中模型模型的效果是否要做
   const [selectedVoiceModel, setSelectedVoiceModel] = useState<TypeVoiceModel | null>(null);
   console.log(selectedVoiceModel);
 
@@ -156,6 +156,17 @@ const AssetsStore: FC<AssetsStoreProps> = ({}) => {
             />
           </div>
         )}
+
+        {/* voice detail modal */}
+        <VoiceModelDetailDrawerModal
+          publishId={selectedVoiceModel?.publish_id}
+          isOpen={selectedVoiceModel !== null}
+          onChange={(isOpen) => {
+            if (!isOpen) {
+              setSelectedVoiceModel(null);
+            }
+          }}
+        />
       </div>
     </>
   );
