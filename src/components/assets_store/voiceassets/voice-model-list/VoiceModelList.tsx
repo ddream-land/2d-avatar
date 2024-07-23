@@ -62,6 +62,7 @@ function VoiceModelList({
       onChange && onChange(res.data.list);
 
       let newVoiceModelList: TypeVoiceModel[] = res.data.list;
+
       if (isFirst) {
         setCount(newVoiceModelList.length);
         setVoiceModelList([...newVoiceModelList]);
@@ -87,6 +88,8 @@ function VoiceModelList({
   useEffect(() => {
     getPublishSquareToServer({ isFirst: true });
   }, []);
+
+  // console.log(voiceModelList, "list");
 
   return (
     <div className="self-stretch flex-col justify-start items-start gap-8 flex h-full">

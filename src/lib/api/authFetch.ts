@@ -72,11 +72,14 @@ export const authFetch = ({
 
         if (data.code === 0) {
           successMsg &&
-            amDispatch({
-              type: "add",
-              payload: successMsg,
-            });
-          setIsLoading(false);
+            // amDispatch({
+            //   type: "add",
+            //   payload: {
+            //     message: successMsg,
+            //     type: "success",
+            //   },
+            // });
+            setIsLoading(false);
           return data;
         }
 
@@ -87,10 +90,10 @@ export const authFetch = ({
           return data;
         }
 
-        amDispatch({
-          type: "add",
-          payload: data.msg,
-        });
+        // amDispatch({
+        //   type: "add",
+        //   payload: data.msg,
+        // });
 
         setIsLoading(false);
         return data;

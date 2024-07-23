@@ -53,12 +53,12 @@ function PlayButton({
         if (playing) {
           if (audioElement.paused || audioElement.ended) {
             audioElement.currentTime = 0; // 重置到开始
-            playBtnDispatch({
-              type: "pause",
-              payload: {
-                audio: audioRef.current,
-              },
-            });
+            // playBtnDispatch({
+            //   type: "pause",
+            //   payload: {
+            //     audio: audioRef.current,
+            //   },
+            // });
             await audioElement.play();
           }
         } else {

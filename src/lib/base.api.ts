@@ -104,7 +104,7 @@ export const baseApiHander = ({
         // if (isSt) {
         //   return data;
         // }
-        if (data.code === 0) {
+        if (data.code === 0 || data.code === 200) {
           successMsg &&
             amDispatch({
               type: "add",
